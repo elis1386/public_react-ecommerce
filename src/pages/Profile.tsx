@@ -9,9 +9,12 @@ import { AppDispatch, RootState } from "../store/store";
 import AdminProductList from "../components/AdminProductList";
 import AdminCreateProduct from "../components/AdminCreateProduct";
 
+import { mobile, tablet } from "../responsive";
+
 const Container = styled.div`
   display: flex;
   margin: 1.2em;
+  ${mobile({ flexDirection: "column", margin: ".5em" })}
 `;
 const Wrapper = styled.div`
   margin-top: 1.2em;
@@ -22,6 +25,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 1em;
   border: 1px solid #eee;
+  ${mobile({ flex: "1", width: "100%" })}
 `;
 const Info = styled.div`
   padding: 1em;
@@ -41,6 +45,7 @@ const Box = styled.div`
   margin: 1em;
   width: 80%;
   gap: 1em;
+  ${mobile({ width: "100%", marginTop: "1em", margin: "0" })}
 `;
 const CreateButton = styled.button`
   width: 20%;
@@ -50,9 +55,11 @@ const CreateButton = styled.button`
   background-color: #eeee;
   border: none;
   border-radius: 0.2em;
+  ${mobile({ width: "40%",marginTop: "1em" })}
 `;
 const ListWrapper = styled.div`
   width: 85%;
+  ${mobile({ width: "100%" })}
 `;
 const ProfilePicContainer = styled.div`
   margin-top: 10px;
@@ -78,9 +85,9 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-  
+
   const handleCreateProductClick = () => {
-    setCreateProductVisible(!isCreateProductVisible); 
+    setCreateProductVisible(!isCreateProductVisible);
   };
 
   return (
@@ -100,10 +107,14 @@ const Profile = () => {
       </Wrapper>
       {user && user.role === "admin" && (
         <Box>
-          <CreateButton onClick={handleCreateProductClick}>Create products</CreateButton>
+          <CreateButton onClick={handleCreateProductClick}>
+            Create products
+          </CreateButton>
           {isCreateProductVisible && <AdminCreateProduct />}
           <ListWrapper>
-            {list.length > 0 && <AdminProductList products={list} amount={16} />}
+            {list.length > 0 && (
+              <AdminProductList products={list} amount={16} />
+            )}
           </ListWrapper>
         </Box>
       )}
