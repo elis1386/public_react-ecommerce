@@ -115,6 +115,7 @@ const ItemText = styled.div`
 `;
 const StyledLink = styled(Link)({
   textDecoration: "none",
+  color: "teal"
 });
 
 const Header = () => {
@@ -235,9 +236,9 @@ const Header = () => {
             </>
           )}
           <MenuItem>
-            <Link to="/cart">
+            <StyledLink to="/cart">
               <ShoppingCartOutlinedIcon />
-            </Link>
+            </StyledLink>
           </MenuItem>
         </Right>
       </Wrapper>
