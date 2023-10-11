@@ -12,7 +12,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 4em;
   display: flex;
-  ${tablet({ gap: "2em" })}
+  ${tablet({ gap: "2em" , padding: "1em"})}
   ${mobile({ gap: "1em", padding: "1em" })}
 `;
 const ImgContainer = styled.div`
@@ -25,9 +25,9 @@ const ImgContainer = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 60vh;
-  object-fit: contain;
-  ${tablet({ width: "100%", height: "45vh" })}
-  ${mobile({ width: "100%", height: "30vh" })}
+  object-fit: cover;
+  ${tablet({ width: "100%" })}
+  ${mobile({ width: "100%", height: "40vh" })}
 `;
 const InfoContainer = styled.div`
   flex: 1;
@@ -44,7 +44,11 @@ const InfoContainer = styled.div`
 `;
 const Title = styled.h1`
   font-weight: 200;
-  ${mobile({ textAlign: "center", margin: "0", fontSize: "1.4em" })}
+  font-size: 3em;
+  ${tablet({
+    textAlign: "center", margin: "0", fontSize: "2em"
+  })}
+
 `;
 const Desc = styled.p`
   margin: 1.4em 0;
