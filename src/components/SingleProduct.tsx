@@ -31,7 +31,7 @@ const SingleProduct = () => {
   return (
     <div>
       <Product {...data} />
-      <ProductsList products={related} amount={4} title="Related products" />
+      <ProductsList products={related} amount={3} title="Related products" />
     </div>
   );
 };
