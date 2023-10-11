@@ -4,6 +4,8 @@ import styled from "styled-components";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
+import { mobile } from "../responsive";
+
 const Container = styled.div`
   display: flex;
   border-top: 1px solid #eeeeee;
@@ -13,6 +15,7 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.2em;
+  ${mobile({ display: "none" })}
 `;
 const Logo = styled.h1``;
 const Desc = styled.p`
@@ -21,6 +24,7 @@ const Desc = styled.p`
 const Center = styled.div`
   flex: 1;
   padding: 1.4em;
+  ${mobile({ display: "none" })}
 `;
 const Title = styled.h3`
   margin-bottom: 2em;

@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CategoryItem } from "../types/Category";
 
+import { mobile } from "../responsive";
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
   gap: 2em;
   margin: 3em;
+  ${mobile({ gap: "1em", fontSize: ".8em", margin: "1.2em 0" })}
 `;
 const CategoryItemS = styled.div``;
 const StyledLink = styled(Link)`
