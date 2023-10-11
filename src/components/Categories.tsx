@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   gap: 2em;
-  margin-left: 3em;
+  margin: 3em;
 `;
 const CategoryItemS = styled.div``;
 const StyledLink = styled(Link)`
