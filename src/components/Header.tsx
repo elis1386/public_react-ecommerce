@@ -8,13 +8,13 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 import { clearCurrentUser } from "../store/userSlice";
 import { useGetProductsQuery } from "../store/apiSlice";
-import { AppDispatch } from "../store/store";
+import { AppDispatch, RootState } from "../store/store";
 
 import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
-  height: 70px;
-  padding: 1.4em;
+  height: 50px;
+  padding: 1em;
   border-bottom: 1px solid #e0e0e0;
   ${tablet({ height: "40px", margin: "0" })}
   ${mobile({ padding: "1em" })}
@@ -50,7 +50,7 @@ const Center = styled.div`
   text-align: center;
 `;
 const Logo = styled.a`
-  font-size: 3em;
+  font-size: 2.4em;
   font-weight: bold;
   &:hover {
     color: teal;
@@ -64,7 +64,7 @@ const Right = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 0.8em;
-  ${mobile({ flex: 2, justifyContent: "center", gap: 0 })}
+  ${mobile({ flex: 3, justifyContent: "center", gap: 0 })}
 `;
 const MenuItem = styled.div`
   font-size: 1em;
@@ -115,14 +115,14 @@ const ItemText = styled.div`
 `;
 const StyledLink = styled(Link)({
   textDecoration: "none",
-  color: "teal"
+  color: "teal",
 });
 
 const Header = () => {
-  const [search, setSearch] = useState("");
-  const { currentUser } = useSelector(({ user }) => user);
-
   const dispatch = useDispatch<AppDispatch>();
+
+  const [search, setSearch] = useState("");
+  let currentUser = useSelector((state: RootState) => state.user.currentUser);
 
   const { data, isLoading } = useGetProductsQuery({
     title: search,

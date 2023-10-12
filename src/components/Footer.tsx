@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import styled from "styled-components";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -38,7 +38,7 @@ const List = styled.ul`
 `;
 const ListItem = styled.li`
   width: 50%;
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
 `;
 const Right = styled.div`
   flex: 1;

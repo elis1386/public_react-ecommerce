@@ -1,5 +1,5 @@
 export interface ProductItem {
-  id: number ;
+  id: number;
   title: string;
   price: number;
   description: string;
@@ -12,4 +12,15 @@ export interface CreateProduct {
   description: string;
   images: string[];
   categoryId: number;
+}
+
+export interface UpdateProduct {
+  id?: number;
+  update: {
+    title: string;
+    price: number;
+    description: string;
+    images: string[];
+    categoryId: number;
+  };
 }

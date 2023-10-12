@@ -19,7 +19,7 @@ describe("Test cartReducer normal action", () => {
     };
 
     const cart = cartReducer(cartData, addItemToCart(newItem));
-    expect(cart.length).toBe(3); 
+    expect(cart.length).toBe(3);
   });
   test("Should not add but increase the same product in the cart", () => {
     const cart = cartReducer(cartData, addItemToCart(cartData[1]));

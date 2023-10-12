@@ -7,13 +7,16 @@ import { createProductAsync } from "../store/productsSlice";
 import { AppDispatch } from "../store/store";
 import { CreateProduct } from "../types/Product";
 
+import { mobile, tablet } from "../responsive";
+
 const Container = styled.div`
-  width: 85%;;
-  height: 80vh;
+  width: 60%;
   background-size: cover;
   display: flex;
   align-items: start;
   justify-content: start;
+  ${tablet({ width: "140%",  alignItems: "center"})}
+  ${mobile({ width: "180%", height: "50vh", alignItems: "center"})}
 `;
 
 const Wrapper = styled.div`

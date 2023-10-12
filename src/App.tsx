@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import styled from "styled-components";
 
-import { AppDispatch } from "./store/store";
+import { AppDispatch, RootState } from "./store/store";
 import { getCategories } from "./store/categoriesSlice";
 import { getProducts } from "./store/productsSlice";
 import { ROUTES } from "./utils/routes";
@@ -20,13 +20,18 @@ import Profile from "./pages/Profile";
 import SingleCategory from "./components/SingleCategory";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { loginUser } from "./store/userSlice";
 
 const Container = styled.div``;
 
 const App = () => {
   const dispatch: AppDispatch = useDispatch();
-
   useEffect(() => {
+    const userStr = sessionStorage.getItem("user");
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      dispatch(loginUser(user));
+    }
     dispatch(getCategories());
     dispatch(getProducts());
   }, [dispatch]);

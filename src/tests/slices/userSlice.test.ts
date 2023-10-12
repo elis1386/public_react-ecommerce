@@ -22,7 +22,9 @@ afterAll(() => usersServer.close());
 
 test("Should authenticate witg right token", async () => {
   console.log(store.getState().user.currentUser);
-  await store.dispatch(loginUser({email: "alex@gmail.com",password: "Alex1234",}))
+  await store.dispatch(
+    loginUser({ email: "alex@gmail.com", password: "Alex1234" })
+  );
   await store.dispatch(
     authenticateUserAsync({ rejectValue: accessToken + "_1" })
   );

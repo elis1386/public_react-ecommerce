@@ -21,6 +21,6 @@ const categoriesData: CategoryItem[] = [
     name: "Books",
     image: "https://api.lorem.space/image/book?w=150&h=220",
   },
-]
+];
 
 export default categoriesData;

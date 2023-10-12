@@ -27,9 +27,9 @@ const productsData: ProductItem[] = [
     },
   },
   {
-    id:3,
-    "title": "Generic Fresh Cheese",
-    "price": 98,
+    id: 3,
+    title: "Generic Fresh Cheese",
+    price: 98,
     description: "A description of bicycle",
     images: "https://i.imgur.com/fpT4052.jpeg,",
     category: {
@@ -38,7 +38,6 @@ const productsData: ProductItem[] = [
       image: "https://picsum.photos/640/640?r=1389",
     },
   },
-  
 ];
 
 export default productsData;

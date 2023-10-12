@@ -66,7 +66,8 @@ export const authenticateUserAsync = createAsyncThunk<
   }
 });
 
-const initialState: User = { // UserReducerState
+const initialState: User = {
+  // UserReducerState
   currentUser: null,
   error: false,
 };
@@ -85,24 +86,23 @@ const userSlice = createSlice({
       .addCase(createUser.fulfilled, (state, { payload }) => {
         state.currentUser = payload;
         sessionStorage.setItem("user", JSON.stringify(payload));
-        state.error = false; 
+        state.error = false;
       })
       .addCase(createUser.rejected, (state, action) => {
         state.error = action.error.message || "An error occurred";
-        state.error = true; 
+        state.error = true;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.currentUser = payload;
         sessionStorage.setItem("user", JSON.stringify(payload));
-        state.error = false; 
+        state.error = false;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.error = action.error.message || "An error occurred";
-        state.error = true; 
+        state.error = true;
       });
   },
 });
-
 
 export const { clearCurrentUser } = userSlice.actions;
 export default userSlice.reducer;

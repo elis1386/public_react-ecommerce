@@ -12,7 +12,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 4em;
   display: flex;
-  ${tablet({ gap: "2em" , padding: "1em"})}
+  ${tablet({ gap: "2em" })}
   ${mobile({ gap: "1em", padding: "1em" })}
 `;
 const ImgContainer = styled.div`
@@ -23,19 +23,17 @@ const ImgContainer = styled.div`
   ${mobile({ flex: "1.3" })}
 `;
 const Image = styled.img`
-  width: 100%;
+  width: 60%;
   height: 60vh;
   object-fit: cover;
-  ${tablet({ width: "100%" })}
-  ${mobile({ width: "100%", height: "40vh" })}
+  ${tablet({ width: "100%", height: "45vh" })}
+  ${mobile({ width: "100%", height: "30vh" })}
 `;
 const InfoContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
+  gap: 2em;
   ${tablet({
     alignItems: "center",
     justifyContent: "center",
@@ -44,16 +42,13 @@ const InfoContainer = styled.div`
 `;
 const Title = styled.h1`
   font-weight: 200;
-  font-size: 3em;
-  ${tablet({
-    textAlign: "center", margin: "0", fontSize: "2em"
-  })}
-
+  ${mobile({ textAlign: "center", margin: "0",fontSize: "1.4em" })}
 `;
 const Desc = styled.p`
   margin: 1.4em 0;
   text-align: center;
-  width: 80%;
+  width: 50%;
+  ${tablet({ width: "80%" })}
   ${mobile({ display: "none" })}
 `;
 const Price = styled.span`

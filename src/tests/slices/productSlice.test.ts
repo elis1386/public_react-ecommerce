@@ -7,8 +7,8 @@ import {
   getProducts,
   filteredByPrice,
   sortByPrice,
+  updateProductAsync,
 } from "../../store/productsSlice";
-import productsData from "../data/productData";
 
 let store = createStore();
 
@@ -36,7 +36,6 @@ describe("Test async thunk actions in productsReducer", () => {
     );
     expect(resultAction.payload).toBe(productIdToDelete);
   });
-
   test("should create product", async () => {
     const input: CreateProduct = {
       title: "test product",
@@ -67,6 +66,42 @@ describe("Test async thunk actions in productsReducer", () => {
       expect(product.price).toBeLessThanOrEqual(price);
     }
   });
+  test("Should update an existing product", async () => {
+    // Create a product to update
+    const initialProduct = {
+      title: "Initial Product",
+      description: "Initial description",
+      price: 50,
+      categoryId: 1,
+      images: ["image 1"],
+    };
+    await store.dispatch(createProductAsync(initialProduct));
+
+    // Get the ID of the created product
+    const createdProduct = store.getState().products.list[0];
+    const productIdToUpdate = createdProduct.id;
+
+    // Define the update data
+    const updatedProductData = {
+      id: productIdToUpdate,
+      update: {
+        title: "Updated Product",
+        description: "Updated description",
+        price: 75,
+        categoryId: 2,
+        images: ["image 2"],
+      },
+    };
+    await store.dispatch(updateProductAsync(updatedProductData));
+
+    // Get the updated product from the store
+    const updatedProduct = store
+      .getState()
+      .products.list.find((product) => product.id === productIdToUpdate);
+
+    // Assertions
+    expect(updatedProduct).not.toBeNull();
+  });
 
   test("Should sort products by price", async () => {
     const price_min = 0;
@@ -82,5 +117,23 @@ describe("Test async thunk actions in productsReducer", () => {
         sortedProducts[i - 1].price
       );
     }
+  });
+  test("Should handle errors when updating a product", async () => {
+    const invalidProductId = 999;
+    const updatedProductData = {
+      id: invalidProductId,
+      update: {
+        title: "Updated Product",
+        description: "Updated description",
+        price: 75,
+        categoryId: 2,
+        images: ["image 2"],
+      },
+    };
+
+    const resultAction = await store.dispatch(
+      updateProductAsync(updatedProductData)
+    );
+    expect(resultAction.payload).toBeDefined();
   });
 });

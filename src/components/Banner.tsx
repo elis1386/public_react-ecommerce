@@ -47,8 +47,8 @@ const Title = styled.h1`
 `;
 const Desc = styled.p`
   margin: 2.4em 0px;
-  font-size: 1.2em;
-  font-weight: 500;
+  font-size: 1em;
+  font-weight: 400;
   letter-spacing: .3em;
 `;
 const Button = styled.button`

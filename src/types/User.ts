@@ -24,5 +24,5 @@ export interface CreateUser {
   email: string;
   password: string;
   avatar: string;
-  role?:string
+  role?: string;
 }

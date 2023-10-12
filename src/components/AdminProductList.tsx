@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import { deleteProductAsync } from "../store/productsSlice";
 import { AppDispatch, RootState } from "../store/store";
 
 import { ProductItem } from "../types/Product";
+import AdminUpdateProduct from "./AdminUpdateProduct";
 
 const CustomList = styled.ul`
   list-style: none;
@@ -20,7 +21,7 @@ const CustomListItem = styled.li`
   align-items: center;
   padding: 0.8em;
   border: 1px solid #eee;
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
 `;
 
 const CustomListItemText = styled.span`
@@ -36,6 +37,15 @@ const CustomListButton = styled.button`
   cursor: pointer;
   border-radius: 0.5em;
 `;
+const CustomUpdateButton = styled.button`
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 0.8em 1em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  margin-right: .8em;
+`;
 const PicContainer = styled.div`
   padding: 0.6em;
 `;
@@ -50,6 +60,8 @@ const AdminProductList = ({ products = [] as ProductItem[], amount = 0 }) => {
 
   const limitedProducts = products.slice(0, amount);
   const isLoading = useSelector((state: RootState) => state.products.isLoading);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+  const [currentProductId, setCurrentProductId] = useState<number | null>(null);
 
 
   const handleDeleteProduct = async (id: number) => {
@@ -59,23 +71,36 @@ const AdminProductList = ({ products = [] as ProductItem[], amount = 0 }) => {
       console.error("Error deleting product:", error);
     }
   };
-  return (
-    <CustomList>
-      {limitedProducts.map(({ id, title, images }: ProductItem) => (
-        <CustomListItem key={id}>
-          <PicContainer>
-            <ProductImg src={images[0]} alt="" />
-          </PicContainer>
-          <CustomListItemText> product id: {id}</CustomListItemText>
-          <CustomListItemText>{title}</CustomListItemText>
+  const handleUpdateProduct = (id: number) => {
+    setShowUpdateForm(true);
+    setCurrentProductId(id);
+  };
+  const closeUpdateForm = () => {
+    setShowUpdateForm(false);
+  };
 
-          <CustomListButton onClick={() => handleDeleteProduct(id)}>
-            {isLoading ? "Deleting..." : "Delete"}
-            Delete
-          </CustomListButton>
-        </CustomListItem>
-      ))}
-    </CustomList>
+  return (
+    <>
+      {showUpdateForm && <AdminUpdateProduct id={currentProductId} closeForm={closeUpdateForm} />}
+
+      <CustomList>
+        {limitedProducts.map(({ id, title, images }: ProductItem) => (
+          <CustomListItem key={id} style={{ backgroundColor: currentProductId === id ? '#b2d8d8' : 'transparent' }}>
+            <PicContainer>
+              <ProductImg src={images[0]} alt="" />
+            </PicContainer>
+            <CustomListItemText> product id: {id}</CustomListItemText>
+            <CustomListItemText>{title}</CustomListItemText>
+            <CustomUpdateButton onClick={() => handleUpdateProduct(id)}>
+              {isLoading ? "Updating..." : "Update"}
+            </CustomUpdateButton>
+            <CustomListButton onClick={() => handleDeleteProduct(id)}>
+              {isLoading ? "Deleting..." : "Delete"}
+            </CustomListButton>
+          </CustomListItem>
+        ))}
+      </CustomList>
+    </>
   );
 };
 

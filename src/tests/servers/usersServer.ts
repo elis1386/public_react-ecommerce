@@ -33,7 +33,6 @@ export const handlers = [
     const userId = token?.split("_")[1];
     const foundUser = usersData.find((user) => user.id === Number(userId));
     if (originalToken === accessToken && foundUser) {
-  
       return res(ctx.json(foundUser));
     } else {
       ctx.status(401);

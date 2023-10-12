@@ -55,6 +55,7 @@ const CreateButton = styled.button`
   background-color: #eeee;
   border: none;
   border-radius: 0.2em;
+  ${tablet({ width: "30%"})}
   ${mobile({ width: "40%",marginTop: "1em" })}
 `;
 const ListWrapper = styled.div`
@@ -72,6 +73,7 @@ const Avatar = styled.img`
   border-radius: 50%;
   object-fir: cover;
 `;
+
 const Profile = () => {
   const [isCreateProductVisible, setCreateProductVisible] = useState(false);
 
@@ -85,9 +87,9 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-
+  
   const handleCreateProductClick = () => {
-    setCreateProductVisible(!isCreateProductVisible);
+    setCreateProductVisible(!isCreateProductVisible); 
   };
 
   return (
@@ -107,14 +109,10 @@ const Profile = () => {
       </Wrapper>
       {user && user.role === "admin" && (
         <Box>
-          <CreateButton onClick={handleCreateProductClick}>
-            Create products
-          </CreateButton>
+          <CreateButton onClick={handleCreateProductClick}>Create products</CreateButton>
           {isCreateProductVisible && <AdminCreateProduct />}
           <ListWrapper>
-            {list.length > 0 && (
-              <AdminProductList products={list} amount={16} />
-            )}
+            {list.length > 0 && <AdminProductList products={list} amount={16} />}
           </ListWrapper>
         </Box>
       )}

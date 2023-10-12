@@ -7,7 +7,7 @@ import {
 
 import axios from "axios";
 
-import { ProductItem } from "../types/Product";
+import { ProductItem, UpdateProduct } from "../types/Product";
 import { CreateProduct } from "../types/Product";
 
 import { BASE_URL } from "../utils/constants";
@@ -49,12 +49,39 @@ export const deleteProductAsync = createAsyncThunk(
     }
   }
 );
+export const updateProductAsync = createAsyncThunk(
+  "updateProduct",
+  async ({ id, update }: UpdateProduct, thunkAPI) => {
+    try {
+      const response = await axios.put<ProductItem>(
+        `${BASE_URL}/products/${id}`,
+        update
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 export const filterProductsByCategory = createAsyncThunk<ProductItem[]>(
   "products/filterProductsByCategory",
   async (categoryId, thunkAPI) => {
     try {
       const response = await axios(
         `${BASE_URL}/products/?categoryId=${categoryId}`
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const getProductByIdAsync = createAsyncThunk(
+  "products/getProductByIdAsync",
+  async (id: number, thunkAPI) => {
+    try {
+      const response = await axios.get<ProductItem[]>(
+        `${BASE_URL}/products/${id}`
       );
       return response.data;
     } catch (error) {
@@ -72,6 +99,7 @@ const productsSlice = createSlice({
     isLoading: false,
     error: false,
     sorted: [] as ProductItem[],
+    currentProduct: [] as ProductItem[],
   },
   reducers: {
     filteredByPrice: (state, { payload }) => {
@@ -119,6 +147,18 @@ const productsSlice = createSlice({
         state.list = payload;
       }
     );
+    builder.addCase(updateProductAsync.fulfilled, (state, action) => {
+      const id = action.payload.id;
+      const foundIndex = state.list.findIndex((product) => product.id === id);
+      if (foundIndex !== -1) {
+        state.list[foundIndex] = action.payload;
+      }
+      state.isLoading = false;
+    });
+    builder.addCase(updateProductAsync.rejected, (state, action) => {
+      state.error = true;
+      state.isLoading = false;
+    });
     builder.addCase(filterProductsByCategory.rejected, (state) => {
       state.error = true;
     });
@@ -130,6 +170,9 @@ const productsSlice = createSlice({
     builder.addCase(deleteProductAsync.rejected, (state, action) => {
       state.error = true;
       state.isLoading = false;
+    });
+    builder.addCase(getProductByIdAsync.fulfilled, (state, { payload }) => {
+      state.currentProduct = payload;
     });
   },
 });
