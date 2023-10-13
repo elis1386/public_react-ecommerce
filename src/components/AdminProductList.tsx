@@ -30,7 +30,7 @@ const CustomListItemText = styled.span`
 `;
 
 const CustomListButton = styled.button`
-  background-color: red;
+  background-color: #f05635;
   color: white;
   border: none;
   padding: 0.8em 1em;
@@ -38,7 +38,7 @@ const CustomListButton = styled.button`
   border-radius: 0.5em;
 `;
 const CustomUpdateButton = styled.button`
-  background-color: green;
+  background-color: #40a97e;
   color: white;
   border: none;
   padding: 0.8em 1em;
