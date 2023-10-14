@@ -22,7 +22,7 @@ const ImgContainer = styled.div`
   ${mobile({ flex: "1.3" })}
 `;
 const Image = styled.img`
-  width: 60%;
+  width: 70%;
   height: 60vh;
   object-fit: cover;
   ${tablet({ width: "100%", height: "45vh" })}
@@ -41,13 +41,15 @@ const InfoContainer = styled.div`
   })}
 `;
 const Title = styled.h1`
-  font-weight: 200;
+  font-weight: 500;
+  fornt-size: 2.6em;
   ${mobile({ textAlign: "center", margin: "0", fontSize: "1.4em" })}
 `;
 const Desc = styled.p`
   margin: 1.4em 0;
   text-align: center;
-  width: 50%;
+  fort-size: 1.6em;
+  width: 80%;
   ${tablet({ width: "80%" })}
   ${mobile({ display: "none" })}
 `;
