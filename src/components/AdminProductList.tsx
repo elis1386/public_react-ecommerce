@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 import { deleteProductAsync } from "../store/productsSlice";
 import { AppDispatch, RootState } from "../store/store";
-
 import { ProductItem } from "../types/Product";
+
 import AdminUpdateProduct from "./AdminUpdateProduct";
 
 const CustomList = styled.ul`

@@ -19,7 +19,6 @@ const ImgContainer = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
   ${mobile({ flex: "1.3" })}
 `;
 const Image = styled.img`
@@ -33,6 +32,7 @@ const InfoContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2em;
   ${tablet({
     alignItems: "center",
@@ -42,7 +42,7 @@ const InfoContainer = styled.div`
 `;
 const Title = styled.h1`
   font-weight: 200;
-  ${mobile({ textAlign: "center", margin: "0",fontSize: "1.4em" })}
+  ${mobile({ textAlign: "center", margin: "0", fontSize: "1.4em" })}
 `;
 const Desc = styled.p`
   margin: 1.4em 0;
