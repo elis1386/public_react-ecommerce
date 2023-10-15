@@ -8,6 +8,8 @@ import categoriesSlice from "./categoriesSlice";
 import productsSlice from "./productsSlice";
 import cartSlice from "./cartSlice";
 
+const storedCartData = JSON.parse(sessionStorage.getItem("products") || '[]');
+
 export const createStore = () => {
   return configureStore({
     reducer: {
@@ -16,6 +18,9 @@ export const createStore = () => {
       user: userSlice,
       cart: cartSlice,
       [apiSlice.reducerPath]: apiSlice.reducer,
+    },
+    preloadedState: {
+      cart: storedCartData, 
     },
     middleware: (getMiddleware) => getMiddleware().concat(apiSlice.middleware),
     devTools: true,

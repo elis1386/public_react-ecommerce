@@ -131,6 +131,8 @@ const EmptyCartMessage = styled.h4`
   text-align: center;
 `;
 const Cart = () => {
+  const item = localStorage.getItem("products")
+  const products = item ? JSON.parse(item) : undefined
   const cartItems = useSelector(selectCartItems);
   const totalPrice = useSelector(selectTotalPrice);
   const dispatch = useDispatch();

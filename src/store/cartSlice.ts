@@ -13,14 +13,16 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart: (state, action: PayloadAction<CartItem>) => {
       const payload = action.payload;
-      if (payload) { // Check if payload is not undefined
-        const existingProductIndex = state.findIndex((item) => item.id === payload.id);
+      if (payload) {
+        const existingProductIndex = state.findIndex(
+          (item) => item.id === payload.id
+        );
         if (existingProductIndex !== -1) {
           state[existingProductIndex].quantity += payload.quantity || 1;
         } else {
           state.push({ ...payload, quantity: payload.quantity || 1 });
         }
-        updateSessionStorage(state);
+        updateSessionStorage(state); // Save to sessionStorage
       }
     },
     removeFromCart: (state, action) => {
@@ -57,7 +59,7 @@ const cartSlice = createSlice({
   },
 });
 
-const cartReducer = cartSlice.reducer
+const cartReducer = cartSlice.reducer;
 
 export const {
   addItemToCart,
